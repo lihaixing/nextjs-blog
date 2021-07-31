@@ -12,12 +12,11 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>大家好，我是李海兴，前端工程是</p>
+        <p>前端工程师</p>
         <p>
-          (这是我的简历
-          <Link href="/posts/first-post">我的简历</Link>.)
+          <Link href="#">简历还没写</Link>
         </p>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>文章</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
