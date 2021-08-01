@@ -5,8 +5,11 @@ import Link from 'next/link'
 
 const name = '李海兴'
 export const siteTitle = '李海兴的技术博客'
-
-export default function Layout({ children, home }) {
+interface IProps {
+  children: any,
+  home?: boolean
+}
+export default function Layout({ children, home }: IProps) {
   return (
     <div className={styles.container}>
       <Head>
