@@ -2,9 +2,10 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
+import { getList } from '../lib/getArticle'
 import Date from '../components/date'
 export default function Home({ allPostsData }) {
+  // console.log('allPostsData', allPostsData)
   return (
     <Layout home>
       <Head>
@@ -17,8 +18,8 @@ export default function Home({ allPostsData }) {
         </p>
         <h2 className={utilStyles.headingLg}>文章</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
+          {allPostsData.map(({ id, date, title }) => {
+            return <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>
               </Link>
@@ -27,7 +28,7 @@ export default function Home({ allPostsData }) {
                 <Date dateString={date} />
               </small>
             </li>
-          ))}
+          })}
         </ul>
       </section>
     </Layout>
@@ -35,7 +36,7 @@ export default function Home({ allPostsData }) {
 }
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
+  const allPostsData = await getList();
   return {
     props: {
       allPostsData

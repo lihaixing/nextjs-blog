@@ -1,0 +1,1 @@
+export const baseUrl = "http://openapi.xylink.com:9999/docs"
