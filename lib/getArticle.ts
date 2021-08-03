@@ -3,6 +3,7 @@ import remark from 'remark'
 import html from 'remark-html'
 
 export async function getList() {
+  // eslint-disable-next-line no-undef
   const fetchData = await fetch(`${baseUrl}/queryList?parentId=BBc3lkESy`);
   const res = await fetchData.json();
   let files = [];
@@ -23,6 +24,7 @@ export async function getList() {
 }
 
 export async function getAllPostIds() {
+  // eslint-disable-next-line no-undef
   const fetchData = await fetch(`${baseUrl}/queryList?parentId=BBc3lkESy`);
   const res = await fetchData.json();
   let files = [];
@@ -45,6 +47,7 @@ export async function getAllPostIds() {
 }
 
 export async function getPostData(id: string) {
+  // eslint-disable-next-line no-undef
   const fetchData = await fetch(`${baseUrl}/getOne?_id=${id}`);
   const res = await fetchData.json();
   let content = {};
