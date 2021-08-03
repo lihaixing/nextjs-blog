@@ -21,7 +21,8 @@ export default function Post({ postData }) {
   </Layout>
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = (context) => {
+  console.log('getStaticPaths context: ',context)
   const paths = getAllPostIds();
   return {
     paths,
@@ -29,11 +30,18 @@ export const getStaticPaths: GetStaticPaths = () => {
   }
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postData = await getPostData(params.id);
+export const getStaticProps: GetStaticProps = async (context) => {
+  console.log('getStaticProps context: ', context)
+  const postData = await getPostData(context.params.id);
   return {
     props: {
       postData
-    }
+    },
+    // redirect: {
+    //   destination: '/',
+    //   permanent: false,
+    // },
+
+    // notFound: true,
   }
 };
