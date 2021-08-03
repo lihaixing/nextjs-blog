@@ -13,7 +13,13 @@ export async function getList() {
       date: i.createTime
     }))
   }
-  return files;
+  return files.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1
+    } else {
+      return -1
+    }
+  });
 }
 
 export async function getAllPostIds() {
@@ -21,7 +27,13 @@ export async function getAllPostIds() {
   const res = await fetchData.json();
   let files = [];
   if (res.code === 200) {
-    files = res.data.map(i => ({
+    files = res.data.sort((a, b) => {
+      if (a.date < b.date) {
+        return 1
+      } else {
+        return -1
+      }
+    }).map(i => ({
       params: {
         id: i._id,
         title: i.title,
@@ -48,8 +60,6 @@ export async function getPostData(id: string) {
       contentHtml
     };
   }
-
-
 
   // Combine the data with the id
   return content;

@@ -37,6 +37,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       postData
     },
+    // revalidate: 10
     // redirect: {
     //   destination: '/',
     //   permanent: false,
