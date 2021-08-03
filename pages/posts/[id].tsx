@@ -26,7 +26,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: false
+    fallback: 'blocking'
   }
 };
 
@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       postData
     },
-    // revalidate: 10
+    revalidate: 20
     // redirect: {
     //   destination: '/',
     //   permanent: false,
