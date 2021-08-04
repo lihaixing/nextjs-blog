@@ -4,9 +4,18 @@ import { getAllPostIds, getPostData } from '../../lib/getArticle'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
 import { GetStaticProps, GetStaticPaths } from 'next'
-
+import { useRouter } from 'next/router'
 
 export default function Post({ postData }) {
+  const router = useRouter();
+  
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
+
+  // Render post...
   return <Layout>
     <Head>
       <title>{postData.title}</title>
@@ -27,7 +36,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 };
 
