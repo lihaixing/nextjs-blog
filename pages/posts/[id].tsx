@@ -22,11 +22,12 @@ export default function Post({ postData }) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // console.log('getStaticPaths context: ',context)
+  // eslint-disable-next-line no-undef
+  // console.log('getStaticPaths context: ', context);
   const paths = await getAllPostIds();
   return {
     paths,
-    fallback: 'blocking'
+    fallback: false
   }
 };
 
