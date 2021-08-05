@@ -50,7 +50,7 @@ export async function getPostData(id: string) {
   // eslint-disable-next-line no-undef
   const fetchData = await fetch(`${baseUrl}/getOne?_id=${id}`);
   const res = await fetchData.json();
-  let content = {};
+  let content = null;
   if (res.code === 200) {
     const processedContent = await remark()
       .use(html)

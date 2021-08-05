@@ -43,16 +43,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   // console.log('getStaticProps context: ', context)
   const postData = await getPostData(context.params.id as string);
+
+
+  if(!postData?.id){
+    return {
+      revalidate: 20,
+      // redirect: {
+      //   destination: '/post404',
+      //   permanent: false,
+      // },
+  
+      notFound: true,
+    }
+  }
   return {
     props: {
       postData
     },
     revalidate: 20
-    // redirect: {
-    //   destination: '/',
-    //   permanent: false,
-    // },
-
-    // notFound: true,
   }
 };
